@@ -187,7 +187,7 @@ app.put("/user/update-user/:id/:email/:password", async (req, res) => {
   }
 });
 
-app.delete("/user/delete-user/:email(or id)/", async (req, res) => {
+app.delete("/user/delete-user/:id", async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.json({ message: 'User deleted' });
@@ -196,7 +196,7 @@ app.delete("/user/delete-user/:email(or id)/", async (req, res) => {
   }
 });
 ////
-app.post("/employee/create-employee/:email(or id)", async (req, res) => {
+app.post("/employee/create-employee", async (req, res) => {
 
 });
 app.put("/employee/update-employee/:id/:email/:password", async (req, res) => {
@@ -218,7 +218,7 @@ app.put("/employee/update-employee/:id/:email/:password", async (req, res) => {
   }
 });
 
-app.delete("/employee/delete-employee/:email(or id)/", async (req, res) => {
+app.delete("/employee/delete-employee/:id", async (req, res) => {
   try {
     await Employee.findByIdAndDelete(req.params.id);
     res.json({ message: 'Employee deleted' });
