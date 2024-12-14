@@ -50,11 +50,6 @@ const userSchema = new mongoose.Schema({
         required: [true, 'password is required'],
         trim: true
     },
-    user_id: {
-        type: String,
-        required: [true, 'User ID is required'],
-        unique: true
-    },
     orders: {
         type: Array,
         trim: true
