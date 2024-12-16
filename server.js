@@ -1,6 +1,6 @@
 const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
-const fs = require('fs');
+const fs = require('fs').promises;
 const cors = require("cors");
 const app = express();
 const PORT = 3000;
@@ -20,7 +20,6 @@ const uri = process.env.MONGO_URI;
 
 const client = new MongoClient(uri);
 const path = require('path');
-const fs = require('fs').promises;
 
 // Middleware
 // app.use(cors());
@@ -218,11 +217,20 @@ app.put("/employee/update-employee/:id/:email/:password", async (req, res) => {
   }
 });
 
-app.delete("/employee/delete-employee/:id", async (req, res) => {
-  try {
-    await Employee.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Employee deleted' });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
+app.delete("/api/employees/:id", (req, res) => {
+  const { id } = req.params;
+
+  // Find the employee with the given ID
+  const employeeIndex = employees.findIndex((employee) => employee.id === parseInt(id));
+
+  if (employeeIndex === -1) {
+    return res.status(404).json({ message: "Employee not found" });
   }
+
+  // Remove the employee from the array
+  employees.splice(employeeIndex, 1);
+
+  // Respond with a success message
+  res.status(200).json({ message: `Employee with ID ${id} deleted successfully` });
 });
+
