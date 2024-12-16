@@ -75,8 +75,15 @@ Content-Type: application/json
 
 {
     "document": {
-        "name": "Apple",
-        "price": 1.99
+        "name.first_name": "Gabriel",
+        "name.last_name": "Gimnang",
+        "password": "sigma",
+        "department": "Boss",
+        "employment_type": "full-time",
+        "isAdmin": "true",
+        "contact_info.email": "west-mectester@gmail.com",
+        "contact_info.phone_number": "000-000-0000",
+        "contact_info.address": "sigmaville",
     }
 }
 

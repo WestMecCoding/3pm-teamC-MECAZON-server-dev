@@ -19,6 +19,6 @@
     "MONGO_CLIENT_URI": "${localEnv:TEACHER_FRONT_END}",
     "MONGO_SERVER_URI": "${localEnv:TEACHER_BACK_END}"
   },
-  "postCreateCommand": "bash -c 'npm install && echo \"MONGO_CLIENT_URI=${TEACHER_FRONT_END}\nMONGO_SERVER_URI=${TEACHER_BACK_END}\nPORT=3000\" > .env.production'",
+  "postCreateCommand": "bash -c 'npm install && echo \"MONGO_DEV_CLIENT_URI=${MONGO_DEV_CLIENT_URL}\nMONGO_DEV_SERVER_URI=${MONGO_DEV_SERVER_URI}\nPORT=3000\" > .env.production'",
   "shutdownAction": "none"
 }
