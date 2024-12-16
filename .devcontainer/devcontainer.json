@@ -1,5 +1,5 @@
 {
-  "name": "MECAZON-teacher-server",
+  "name": "MECAZON-dev-server",
   "image": "mcr.microsoft.com/vscode/devcontainers/base:0-focal",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
@@ -16,9 +16,9 @@
   },
   "forwardPorts": [3000],
   "remoteEnv": {
-    "MONGO_CLIENT_URI": "${localEnv:TEACHER_FRONT_END}",
-    "MONGO_SERVER_URI": "${localEnv:TEACHER_BACK_END}"
+    "MONGO_DEV_CLIENT_URI": "${localEnv:MONGO_DEV_CLIENT_URI}",
+    "MONGO_DEV_SERVER_URI": "${localEnv:MONGO_DEV_SERVER_URI}"
   },
-  "postCreateCommand": "bash -c 'npm install && echo \"MONGO_DEV_CLIENT_URI=${MONGO_DEV_CLIENT_URL}\nMONGO_DEV_SERVER_URI=${MONGO_DEV_SERVER_URI}\nPORT=3000\" > .env.production'",
+  "postCreateCommand": "bash -c 'npm install && echo \"MONGO_DEV_CLIENT_URI=${MONGO_DEV_CLIENT_URI}\nMONGO_DEV_SERVER_URI=${MONGO_DEV_SERVER_URI}\nPORT=3000\" > .env.production'",
   "shutdownAction": "none"
 }
