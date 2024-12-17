@@ -54,6 +54,10 @@ const userSchema = new mongoose.Schema({
         type: Array,
         trim: true
     },
+    cart: {
+        type: Array,
+        trim: true
+    },
     payment_type: {
         type: String,
     }
