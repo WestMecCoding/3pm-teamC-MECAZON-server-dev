@@ -67,15 +67,15 @@ Content-Type: application/json
 
 {
     "document": {
-        "name.first_name": "Daniel",
-        "name.last_name": "Calbera",
-        "password": "sigma",
-        "department": "Manager",
+        "name.first_name": "Levi",
+        "name.last_name": "Duarte",
+        "password": "iwmlkmfklemlms",
+        "department": "CEO",
         "employment_type": "full-time",
         "isAdmin": "true",
-        "contact_info.email": "west-mecmanager@gmail.com",
+        "contact_info.email": "west-mecadmin@gmail.com",
         "contact_info.phone_number": "000-000-0000",
-        "contact_info.address": "sigmaville"
+        "contact_info.address": "Mecazon Town"
     }
 }
 
