@@ -373,6 +373,57 @@ app.put("/update/:database/:collection/:id", async (req, res) => {
   }
 });
 
+const employeesFilePath = path.join(__dirname, "db", "employees.json");
+
+// Function to read employees from the JSON file
+const getEmployees = () => {
+  try {
+    const data = fs.readFileSync(employeesFilePath, "utf-8");
+    return JSON.parse(data); // Parse the file content to a JavaScript array
+  } catch (err) {
+    console.error("Error reading employee data:", err);
+    return [];
+  }
+};
+
+// Function to save the updated employees array to the JSON file
+const saveEmployees = (employees) => {
+  try {
+    fs.writeFileSync(employeesFilePath, JSON.stringify(employees, null, 2), "utf-8");
+  } catch (err) {
+    console.error("Error saving employee data:", err);
+  }
+};
+app.get("/api/employees", (req, res) => {
+  const employees = getEmployees();
+  res.json(employees); // Send employee data as JSON response
+});
+
+
+app.delete("/api/employees/:id", (req, res) => {
+  const { id } = req.params;
+
+  // Get the current list of employees
+  const employees = getEmployees();
+
+  // Find the index of the employee with the given ID
+  const employeeIndex = employees.findIndex((employee) => employee.id === parseInt(id));
+
+  if (employeeIndex === -1) {
+    return res.status(404).json({ message: "Employee not found" });
+  }
+
+  // Remove the employee from the array
+  employees.splice(employeeIndex, 1);
+
+  // Save the updated employees list back to the JSON file
+  saveEmployees(employees);
+
+  // Respond with a success message
+  res.status(200).json({ message: `Employee with ID ${id} deleted successfully` });
+});
+
+
 // Test connections before starting server
 async function startServer() {
   try {
