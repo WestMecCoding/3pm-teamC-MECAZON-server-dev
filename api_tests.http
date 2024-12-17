@@ -27,6 +27,15 @@ GET {{baseUrl}}/find/MECAZONDB/Employees
 Content-Type: application/json
 
 
+###
+@userId = 6760b95f377b1540a18a9713
+# GET {{baseUrl}}/retrieve-user/{{userId}}
+# Content-Type: application/json
+
+GET {{baseUrl}}/retrieve-user/MECAZONDB/Users/{{userId}}
+Content-Type: application/json
+
+
 
 ###
 # Insert a single User

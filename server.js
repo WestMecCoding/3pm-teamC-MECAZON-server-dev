@@ -128,21 +128,22 @@ app.get("/find/:database/:collection", async (req, res) => {
 
 
 // GET route to find a specific user
-// app.get("/retrieve-user/:database/:collection", async (req, res) => {
-app.get("/retrieve-user/:user-id", async (req, res) => {
+app.get("/retrieve-user/:database/:collection/:userId", async (req, res) => {
+  // app.get("/retrieve-user/:user-id", async (req, res) => {
   try {
-    const { userId } = req.params;
-    const database = "MECAZONDB";
-    const collection = "Users";
+    const { database, collection, userId } = req.params;
+    // const database = "MECAZONDB";
+    // const collection = "Users";
     console.log("GET request received for:", { database, collection });
 
     const Model = await getModel(database, collection);
     console.log("Model retrieved, executing find query");
 
-    const documents = await Model.find({}).lean();
-    console.log("Query executed, document count:", documents.length);
+    // const documents = await Model.find({}).lean();
+    // console.log("Query executed, document count:", documents.length);
+    // console.log(documents[1]._id);
 
-    const user = documents.find((user) => user.id === userId);
+    const user = await Model.findOne({ _id: userId }).lean();
     if (user) {
       console.log(`Successfully retrieved user: ${user} with ID: ${userId}`);
     } else {
@@ -194,6 +195,48 @@ app.post("/insert/:database/:collection", async (req, res) => {
 });
 
 
+
+
+
+// POST route to insert documents
+app.post("/add-to-cart/:database/:collection/:userId", async (req, res) => {
+  try {
+    const { database, collection, userId } = req.params;
+    const Model = await getModel(database, collection);
+
+    const user = await Model.findOne({ _id: userId }).lean();
+    if (user) {
+      console.log(`Successfully retrieved user: ${user} with ID: ${userId}`);
+    } else {
+      throw new Error(`User with ID ${userId} not found`);
+    }
+
+    // Check if single or multiple documents
+    if (req.body.document) {
+      // Single document insert
+      const newDocument = await Model.create(req.body.document);
+      res.status(201).json({
+        message: "Document inserted successfully",
+        insertedId: newDocument._id,
+      });
+    } else if (req.body.documents && Array.isArray(req.body.documents)) {
+      // Multiple documents insert
+      const newDocuments = await Model.insertMany(req.body.documents);
+      res.status(201).json({
+        message: `${newDocuments.length} documents inserted`,
+        insertedIds: newDocuments.map(doc => doc._id),
+      });
+    } else {
+      res.status(400).json({
+        error:
+          "Request body must contain either 'document' or 'documents' as array",
+      });
+    }
+  } catch (err) {
+    console.error("Error in POST route:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 
