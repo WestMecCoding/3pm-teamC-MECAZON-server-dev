@@ -35,8 +35,8 @@ Content-Type: application/json
 
 {
     "document": {
-        "name.first_name": "Santiago",
-        "name.last_name": "Hernandez",
+        "name.first_name": "test",
+        "name.last_name": "test",
         "location.country": "United States",
         "location.city": "",
         "location.address": "",
