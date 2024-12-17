@@ -35,38 +35,21 @@ Content-Type: application/json
 
 {
     "document": {
-        "name.first_name": "Gabriel",
-        "name.last_name": "Gimnang",
-        "location.country": "",
+        "name.first_name": "Santiago",
+        "name.last_name": "Hernandez",
+        "location.country": "United States",
         "location.city": "",
         "location.address": "",
         "location.zip_code": "",
-        "contact_info.email": "west-mectester@gmail.com",
-        "contact_info.phone_number": "",
-        "password": "skibidi",
-        "orders": [],
+        "contact_info.email": "west-mecsantiago@gmail.com",
+        "contact_info.phone_number": "000-000-0000",
+        "password": "toolet",
+        "orders": ["keyboard", "mouse", "sticky notes"],
         "payment_type": ""
     }
 }
 
 ###
-
-# Insert multiple Users
-POST {{baseUrl}}/insert/MECAZONDB/Users
-Content-Type: application/json
-
-{
-    "documents": [
-        {
-            "username": "jane_doe",
-            "email": "jane@example.com"
-        },
-        {
-            "username": "john_smith",
-            "email": "john@example.com"
-        }
-    ]
-}
 
 ###
 # Insert a single Employee
@@ -75,38 +58,19 @@ Content-Type: application/json
 
 {
     "document": {
-        "name.first_name": "Gabriel",
-        "name.last_name": "Gimnang",
+        "name.first_name": "Daniel",
+        "name.last_name": "Calbera",
         "password": "sigma",
-        "department": "Boss",
+        "department": "Manager",
         "employment_type": "full-time",
         "isAdmin": "true",
-        "contact_info.email": "west-mectester@gmail.com",
+        "contact_info.email": "west-mecmanager@gmail.com",
         "contact_info.phone_number": "000-000-0000",
-        "contact_info.address": "sigmaville",
+        "contact_info.address": "sigmaville"
     }
 }
 
 ###
-
-# Insert multiple Employees
-POST {{baseUrl}}/insert/MECAZONDB/Employees
-Content-Type: application/json
-
-{
-    "documents": [
-        {
-            "username": "jane_doe",
-            "email": "jane@example.com"
-        },
-        {
-            "username": "john_smith",
-            "email": "john@example.com"
-        }
-    ]
-}
-
-
 
 
 # Test DELETE /delete/:database/:collection/:id

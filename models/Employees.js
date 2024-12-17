@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema({
+    employee_id: { type: String, unique: true, default: () => new mongoose.Types.ObjectId().toString() },
     name: {
         first_name: {
             type: String,
@@ -31,19 +32,16 @@ const employeeSchema = new mongoose.Schema({
         type: Date,
     },
     isAdmin: {
-    type: Boolean,
-    required: [true, 'Adminstrator info is required']
+        type: Boolean,
     },
     contact_info: {
         email: {
             type: String,
-            required: [true, 'Email is required'],
             lowercase: true,
             trim: true
         },
         phone_number: {
             type: String,
-            required: [true, 'Phone number is required'],
             trim: true
         },
         address: {
